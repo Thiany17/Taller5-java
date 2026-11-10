@@ -1,28 +1,31 @@
 package taller5;
-
-import javax.swing.JOptionPane;
+ 
 import java.io.BufferedReader;
-import java.io.InputStreamReader;
 import java.io.IOException;
-
-/**
- * Ejercicio 5 - Clase Estudiante + JOptionPane + BufferedReader
- *
- * El main usa la clase Estudiante (Ejercicio5 combina ambas formas de E/S):
- *  - nombre y edad con JOptionPane
- *  - notas con BufferedReader
- */
+import java.io.InputStreamReader;
+import javax.swing.JOptionPane;
+ 
 public class Ejercicio5 {
-
+ 
     public static void main(String[] args) throws IOException {
-        // TODO:
-        // 1. Pedir nombre con JOptionPane.showInputDialog
-        // 2. Pedir edad con JOptionPane.showInputDialog + Integer.parseInt
-        // 3. Leer tres notas con BufferedReader + Double.parseDouble
-        // 4. Crear objeto Estudiante con el constructor
-        // 5. Mostrar con JOptionPane.showMessageDialog EXACTO:
-        //      Nombre: [nombre]
-        //      Edad: [edad]
-        //      Promedio: X.XX
+        String nombre = JOptionPane.showInputDialog("Ingresa el nombre del estudiante:");
+        int edad = Integer.parseInt(JOptionPane.showInputDialog("Ingresa la edad:"));
+ 
+        BufferedReader lector = new BufferedReader(new InputStreamReader(System.in));
+ 
+        System.out.println("Ingresa la nota 1:");
+        double nota1 = Double.parseDouble(lector.readLine());
+        System.out.println("Ingresa la nota 2:");
+        double nota2 = Double.parseDouble(lector.readLine());
+        System.out.println("Ingresa la nota 3:");
+        double nota3 = Double.parseDouble(lector.readLine());
+ 
+        Estudiante estudiante = new Estudiante(nombre, edad, nota1, nota2, nota3);
+ 
+        String mensaje = "Nombre: " + estudiante.getNombre()
+                + "\nEdad: " + estudiante.getEdad()
+                + "\nPromedio: " + String.format("%.2f", estudiante.getPromedio());
+ 
+        JOptionPane.showMessageDialog(null, mensaje);
     }
 }
